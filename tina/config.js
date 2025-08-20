@@ -1,4 +1,6 @@
 import { defineConfig } from "tinacms";
+import Footer from "./collection/footer";
+import Post from "./collection/post";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -8,12 +10,12 @@ const branch =
   "main";
 
 export default defineConfig({
-  branch,
+  branch: "main",
 
   // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  //clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   // Get this from tina.io
-  token: process.env.TINA_TOKEN,
+  //token: process.env.TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
@@ -27,31 +29,16 @@ export default defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [
-      {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
-            isBody: true,
-          },
-        ],
-        ui: {
-          // This is an DEMO router. You can remove this to fit your site
-          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
-        },
-      },
-    ],
+    collections: [Footer, Post],
   },
-});
+  api: {
+    // If you're self-hosting GitHub, point to your instance
+    github: {
+      owner: "ZamilTanvir", // GitHub username or organization
+      repo: "NextJs-Tina-Tailwind", // GitHub repo name
+      branch: "main", // Branch where content should be pushed
+      token: process.env.GITHUB_TOKEN, // GitHub token for authentication
+    },
+},
+}
+);
