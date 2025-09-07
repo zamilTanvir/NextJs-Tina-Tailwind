@@ -10,11 +10,11 @@ const branch =
   "main";
 
 export default defineConfig({
-  branch: "main",
+  //branch: "main",
   // Get this from tina.io
-  clientId: "",
+  //clientId: "",
   // Get this from tina.io
-  token: "",
+  //token: "",
 
   build: {
     outputFolder: "admin",
@@ -33,7 +33,7 @@ export default defineConfig({
   api: {
     // If you're self-hosting GitHub, point to your instance
     github: {
-      owner: "ZamilTanvir", // GitHub username or organization
+      owner: "zamilTanvir", // GitHub username or organization
       repo: "NextJs-Tina-Tailwind", // GitHub repo name
       branch: "main", // Branch where content should be pushed
       token: process.env.GITHUB_TOKEN, // GitHub token for authentication
